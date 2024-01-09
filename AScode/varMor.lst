@@ -1,0 +1,22 @@
+     1                                 %line 1+1 varMor.s
+     2                                 [global _start]
+     3                                 
+     4                                 [section .data]
+     5 00000000 12                      bVar1 db 0x12
+     6 00000001 AA                      bVar2 db 0xaa
+     7 00000002 00                      wVar1 db 0x0000
+     8 00000003 EE                      wVar2 db 0xffee
+     9                                 
+    10                                 [section .text]
+    11                                 _start:
+    12 00000000 660FB60C25[00000000]      movzx cx, byte [bVar1]
+    13 00000009 660FB60C25[00000000]      movzx cx, byte [bVar2]
+    14 00000012 0FB71C25[00000000]      movzx ebx, word [wVar1]
+    15 0000001A 0FB71C25[00000000]      movzx ebx, word [wVar2]
+    16 00000022 0FB7D9                  movzx ebx, cx
+    17 00000025 480FB6D9                movzx rbx, cl
+    18 00000029 480FB7D9                movzx rbx, cx
+    19                                 
+    20 0000002D 48C7C03C000000          mov rax,60
+    21 00000034 48C7C700000000          mov rdi,0
+    22 0000003B 0F05                    syscall
