@@ -16,6 +16,6 @@ _start:
     mov rbx, 0x1234567812345679
     mov [qVar], rbx
 
-    mov rax,60
+    mov rax,60 ;exit
     mov rdi,0
     syscall
