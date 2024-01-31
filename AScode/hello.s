@@ -2,8 +2,8 @@ global _start
 
 section .text
 _start:
-        mov rax,1
-        mov rdi,1
+        mov rax,1 ;stdout
+        mov rdi,1 
         mov rsi,msg
         mov rdx,msglen
         syscall
