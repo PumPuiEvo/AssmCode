@@ -18,7 +18,7 @@
     18                                 [section .text]
     19                                 _start:
     20 00000000 8A0425[00000000]        mov al, byte [bNum1]
-    21 00000007 8A0425[00000000]        mov al, byte [bNum2]
+    21 00000007 020425[00000000]        add al, byte [bNum2]
     22 0000000E 880425[00000000]        mov byte [bAns], al
     23                                 
     24 00000015 668B0425[00000000]      mov ax, word [wNum1]
