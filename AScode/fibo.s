@@ -9,25 +9,27 @@ section .data
 
 section .text
 _start:
-    mov rcx, qword[num1]
-    mov rax, 1
-    mov rbx, 0
+    mov rcx, qword[num1] ;set n loop
+    mov rax, 1  ;set fibo n=1
+    mov rbx, 0  ;set fibo n=0
 
-    cmp qword[num1], 0
+    cmp qword[num1], 0 ;if num1 = 0 and fuboans = 0
     je zero
-    cmp qword[num1], 1
+    cmp qword[num1], 1 ;if num1 = 0 and fuboans = 1
     je one
     sub rcx, 2
 fiboLoop:
-    mov rdx, qword[n2]
-    mov qword[n1], rdx
-    ;mov rdx, qword[nextNum]
-    mov rdx, rax
-    mov qword[n2], rdx
+    mov rdx, qword[n2]  ;
+    mov qword[n1], rdx  ; n2 = n1
 
-    mov rax, qword[n1]
-    mov rbx, qword[n2]
-    add rax, rbx
+    ;mov rdx, qword[nextNum]
+
+    mov rdx, rax        ; 
+    mov qword[n2], rdx  ; n2 = vari image for use in fibo loop
+
+    mov rax, qword[n1]  ; new n1
+    mov rbx, qword[n2]  ; new n2
+    add rax, rbx        ; and n2 = n1 + n2 
     ;mov qword[nextNum], rax
 
     loop fiboLoop
