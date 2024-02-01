@@ -1,0 +1,61 @@
+     1                                 %line 1+1 fiboSum.s
+     2                                 [global _start]
+     3                                 
+     4                                 [section .data]
+     5 00000000 0800000000000000        num1 dq 8
+     6 00000008 0000000000000000        n1 dq 0
+     7 00000010 0100000000000000        n2 dq 1
+     8 00000018 0000000000000000        fiboAns dq 0
+     9 00000020 0100000000000000        nextNum dq 1
+    10 00000028 0000000000000000        sumfibo dq 0
+    11                                 
+    12                                 [section .text]
+    13                                 _start:
+    14 00000000 488B0C25[00000000]      mov rcx, qword[num1]
+    15 00000008 48C7C001000000          mov rax, 1
+    16 0000000F 48C7C300000000          mov rbx, 0
+    17 00000016 49C7C000000000          mov r8, 0
+    18                                 
+    19 0000001D 48833C25[00000000]-     cmp qword[num1], 0
+    20 0000001D 00                 
+    21 00000026 7451                    je zero
+    22 00000028 48833C25[00000000]-     cmp qword[num1], 1
+    23 00000028 01                 
+    24 00000031 7454                    je one
+    25 00000033 4883E902                sub rcx, 2
+    26 00000037 49C7C002000000          mov r8, 2
+    27                                 fiboLoop:
+    28 0000003E 488B1425[00000000]      mov rdx, qword[n2]
+    29 00000046 48891425[00000000]      mov qword[n1], rdx
+    30                                 
+    31                                 
+    32                                 
+    33 0000004E 4889C2                  mov rdx, rax
+    34 00000051 48891425[00000000]      mov qword[n2], rdx
+    35                                 
+    36 00000059 488B0425[00000000]      mov rax, qword[n1]
+    37 00000061 488B1C25[00000000]      mov rbx, qword[n2]
+    38 00000069 4801D8                  add rax, rbx
+    39                                 
+    40 0000006C 4901C0                  add r8, rax
+    41                                 
+    42 0000006F E2CB                    loop fiboLoop
+    43 00000071 48890425[00000000]      mov qword[fiboAns], rax
+    44 00000079 EB1A                    jmp endProgram
+    45                                 
+    46                                 zero:
+    47 0000007B 48C70425[00000000]-     mov qword[fiboAns], 0
+    48 0000007B 00000000           
+    49 00000087 EB0C                    jmp endProgram
+    50                                 
+    51                                 one:
+    52 00000089 48C70425[00000000]-     mov qword[fiboAns], 1
+    53 00000089 01000000           
+    54 00000095 EBFE                    jmp endProgram
+    55                                 endProgram:
+    56 00000097 488B1C25[00000000]      mov rbx, qword[fiboAns]
+    57 0000009F 4C890425[00000000]      mov qword[sumfibo], r8
+    58                                 
+    59 000000A7 48C7C03C000000          mov rax,60
+    60 000000AE 48C7C700000000          mov rdi,0
+    61 000000B5 0F05                    syscall
