@@ -124,14 +124,6 @@ strCountDone:
 	ret
 
 textFcheck:
-
-    ; mov rdx, qword[strlenfile]
-    ; mov eax, SYS_write ; code for write()
-	; mov rsi, readBuffer ; addr of characters
-	; mov rdi, STDOUT ; file descriptor
-	; syscall ; system call
-    ; call a_endline
-
     mov r9, qword[strlenfile]
     dec r9
     xor rcx, rcx
