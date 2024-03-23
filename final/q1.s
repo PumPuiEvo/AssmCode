@@ -19,13 +19,16 @@ section .data
 
 section .text
 _start:
+    mov rax, qword[testNumber]
+    push rax
+
     mov rax, SYS_write
     mov rdi, STDOUT
     mov rsi, axeIs
     mov rdx, 5
     syscall
 
-    mov rax, qword[testNumber]
+    pop rax
     movzx rax, ax
 
     mov r9, 16
