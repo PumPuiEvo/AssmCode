@@ -148,7 +148,7 @@ textCheck:
     cmp r9, 0
     jg textCheck
 
-
+    ;is a text file
     mov rax, SYS_write
     mov rdi, STDOUT
     mov rsi, text1
