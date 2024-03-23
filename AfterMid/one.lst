@@ -1,0 +1,19 @@
+     1                                 %line 1+1 one.s
+     2                                 [extern printf]
+     3                                 
+     4                                 [section .data]
+     5 00000000 48656C6C6F2C20576F-     msg db "Hello, World!", 0
+     6 00000000 726C642100         
+     7 0000000E 25730A00                fmt db "%s", 10, 0
+     8                                 [section .text]
+     9                                 
+    10                                 [global main]
+    11                                 main:
+    12 00000000 55                      push rbp
+    13 00000001 48C7C7[00000000]        mov rdi, fmt
+    14 00000008 48C7C6[00000000]        mov rsi, msg
+    15 0000000F 48C7C000000000          mov rax, 0
+    16 00000016 E8(F6FFFFFF)            call printf
+    17 0000001B 5D                      pop rbp
+    18 0000001C 48C7C000000000          mov rax, 0
+    19 00000023 C3                      ret
